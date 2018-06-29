@@ -3,52 +3,54 @@
         <requirement type="package" version="3.4.1">r-base</requirement>
         <requirement type="package" version="1.20.0">r-getopt</requirement>
         <requirement type="package" version="1.1.21">r-nanostringnorm</requirement>
-  	<requirement type="package" version="1.7.8">r-psych</requirement>
+        <requirement type="package" version="1.7.8">r-psych</requirement>
         <requirement type="package" version="1.17.1">bioconductor-complexheatmap</requirement>
-	<requirement type="package" version="0.4.3">r-circlize</requirement>
+        <requirement type="package" version="0.4.3">r-circlize</requirement>
         <requirement type="package" version="2.18.0">r-gdata</requirement>
-	<requirement type="package" version="3.98_1.6">r-xml</requirement>
-	<requirement type="package" version="1.1_2">r-rcolorbrewer</requirement>
-	<requirement type="package" version="4.0.0">r-writexls</requirement>
+        <requirement type="package" version="3.98_1.6">r-xml</requirement>
+        <requirement type="package" version="1.1_2">r-rcolorbrewer</requirement>
+        <requirement type="package" version="4.0.0">r-writexls</requirement>
     </requirements>
-    <command detect_errors="exit_code"><![CDATA[Rscript --default-packages=methods,utils ${__tool_directory__}/nanonorm.R --rccfile "$i_rccfile" --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait $i_trait --statistic $o_statistic]]></command>
+    <command detect_errors="exit_code"><![CDATA[
+Rscript --default-packages=methods,utils ${__tool_directory__}/nanonorm.R --rccfile "$i_rccfile" --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait $i_trait --statistic $o_statistic]]>
+    </command>
     <inputs>
-	<param type="data" name="i_rccfile" format="xlsx" label="XLSX table of RCC files" />
-	<param type="data" name="i_trait" format="xlsx" label="XLSX table of binary traits for differential analysis" />
-        <param name="codecount" type="select" label="CodeCount">
-		<option value="none">none</option>
-		<option value="geo.mean">geo.mean</option>
-		<option value="sum">sum</option>
-	</param>
-        <param name="background" type="select" label="Background">
-		<option value="none">none</option>
-		<option value="mean.2sd">mean.2sd</option>
-		<option value="mean">mean</option>
-		<option value="max">max</option>
-	</param>
-	<param name="samplecont" type="select" label="SampleContent">
-		<option value="none">none</option>
-		<option value="top.geo.mean">top.geo.mean</option>
-		<option value="housekeeping.geo.mean">housekeeping.geo.mean</option>
-		<option value="low.cv.geo.mean">low.cv.geo.mean</option>
-		<option value="top.mean">top.mean</option>
-		<option value="housekeeping.sum">housekeeping.sum</option>
-		<option value="total.sum">total.sum</option>
-	</param>
-	<param name="othernorm" type="select" label="OtherMethods">
-		<option value="none">none</option>
-		<option value="quantile">quantile</option>
-		<option value="rank.normal">rank.normal</option>
-		<option value="zscore">zscore</option>
-	</param>
+        <param type="data" name="i_rccfile" format="xlsx" label="XLSX table of RCC files" />
+        <param type="data" name="i_trait" format="xlsx" label="XLSX table of binary traits for differential analysis" />
+            <param name="codecount" type="select" label="CodeCount">
+            <option value="none">none</option>
+            <option value="geo.mean">geo.mean</option>
+            <option value="sum">sum</option>
+        </param>
+            <param name="background" type="select" label="Background">
+            <option value="none">none</option>
+            <option value="mean.2sd">mean.2sd</option>
+            <option value="mean">mean</option>
+            <option value="max">max</option>
+        </param>
+        <param name="samplecont" type="select" label="SampleContent">
+            <option value="none">none</option>
+            <option value="top.geo.mean">top.geo.mean</option>
+            <option value="housekeeping.geo.mean">housekeeping.geo.mean</option>
+            <option value="low.cv.geo.mean">low.cv.geo.mean</option>
+            <option value="top.mean">top.mean</option>
+            <option value="housekeeping.sum">housekeeping.sum</option>
+            <option value="total.sum">total.sum</option>
+        </param>
+        <param name="othernorm" type="select" label="OtherMethods">
+            <option value="none">none</option>
+            <option value="quantile">quantile</option>
+            <option value="rank.normal">rank.normal</option>
+            <option value="zscore">zscore</option>
+        </param>
     </inputs>
     <outputs>
-	<data name="o_output" format="xlsx" label="Table_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
-	<data name="o_statistic" format="xlsx" label="Statistic_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
-	<data name="o_outpdf" format="pdf" label="NanoNorm_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
-	<data name="o_controls" format="pdf" label="Controls_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
-	<data name="o_househk" format="pdf" label="HouseK_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
-	<data name="o_boxplot" format="pdf" label="Boxplot_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_output" format="xlsx" label="Table_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_statistic" format="xlsx" label="Statistic_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_outpdf" format="pdf" label="NanoNorm_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_controls" format="pdf" label="Controls_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_househk" format="pdf" label="HouseK_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
+        <data name="o_boxplot" format="pdf" label="Boxplot_${codecount.value_label}_${background.value_label}_${samplecont.value_label}_${othernorm.value_label}" />
     </outputs>
     <tests>
         <test>
@@ -60,19 +62,19 @@
         Escolha as tabelas xlsx com os dados de NanoString e parâmetros para análise diferencial. Selecione as opções de normalização e clique em executar. Será fornecido a tabela com dados normalizados, a tabela com valores de p e fold change, um pdf com os todos os gráficos possíveis do NanoStringNorm e, adicionalmente, o plot dos controles (positivo e negativo por "Code Class") e boxplots dos housekeepings e endogenos (antes e depois da normalização).
     ]]></help>
     <citations>
-	<citation type="bibtex">
-	@article{doi:10.1093/bioinformatics/bts188,
-	author = {Waggott, Daryl and Chu, Kenneth and Yin, Shaoming and Wouters, Bradly G. and Liu, Fei-Fei and Boutros, Paul C.},
-	title = {NanoStringNorm: an extensible R package for the pre-processing of NanoString mRNA and miRNA data},
-	journal = {Bioinformatics},
-	volume = {28},
-	number = {11},
-	pages = {1546-1548},
-	year = {2012},
-	doi = {10.1093/bioinformatics/bts188},
-	URL = {http://dx.doi.org/10.1093/bioinformatics/bts188},
-	eprint = {/oup/backfile/content_public/journal/bioinformatics/28/11/10.1093_bioinformatics_bts188/2/bts188.pdf}
-	}
-	</citation>
+        <citation type="bibtex">
+        @article{doi:10.1093/bioinformatics/bts188,
+        author = {Waggott, Daryl and Chu, Kenneth and Yin, Shaoming and Wouters, Bradly G. and Liu, Fei-Fei and Boutros, Paul C.},
+        title = {NanoStringNorm: an extensible R package for the pre-processing of NanoString mRNA and miRNA data},
+        journal = {Bioinformatics},
+        volume = {28},
+        number = {11},
+        pages = {1546-1548},
+        year = {2012},
+        doi = {10.1093/bioinformatics/bts188},
+        URL = {http://dx.doi.org/10.1093/bioinformatics/bts188},
+        eprint = {/oup/backfile/content_public/journal/bioinformatics/28/11/10.1093_bioinformatics_bts188/2/bts188.pdf}
+        }
+        </citation>
     </citations>
 </tool>
