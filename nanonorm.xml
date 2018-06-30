@@ -19,14 +19,14 @@ echo $(R --version | grep version | grep -v GNU)", nanostringnorm version" $(R -
 Rscript --default-packages=methods,utils ${__tool_directory__}/nanonorm.R --rccfile "$i_rccfile" --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait $i_trait --statistic $o_statistic]]>
     </command>
     <inputs>
-        <param type="data" name="i_rccfile" format="xlsx" label="XLSX table of RCC files" />
-        <param type="data" name="i_trait" format="xlsx" label="XLSX table of binary traits for differential analysis" />
-            <param name="codecount" type="select" label="CodeCount">
+        <param name="i_rccfile" type="data" format="xlsx" label="XLSX table of RCC files" />
+        <param name="i_trait" type="data" format="xlsx" label="XLSX table of binary traits for differential analysis" />
+        <param name="codecount" type="select" label="CodeCount">
             <option value="none">none</option>
             <option value="geo.mean">geo.mean</option>
             <option value="sum">sum</option>
         </param>
-            <param name="background" type="select" label="Background">
+        <param name="background" type="select" label="Background">
             <option value="none">none</option>
             <option value="mean.2sd">mean.2sd</option>
             <option value="mean">mean</option>
