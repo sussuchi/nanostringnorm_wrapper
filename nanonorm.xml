@@ -1,22 +1,15 @@
-<tool id="nanonorm" name="NanostringNorm" version="0.1.0">
+<tool id="nanonorm" name="NanostringNorm" version="0.1.1">
     <description>normalize NanoString miRNA and mRNA data</description>
     <requirements>
-        <requirement type="package" version="3.4.1">r-base</requirement>
-        <requirement type="package" version="1.20.0">r-getopt</requirement>
         <requirement type="package" version="1.1.21">r-nanostringnorm</requirement>
-        <requirement type="package" version="1.7.8">r-psych</requirement>
-        <requirement type="package" version="1.17.1">bioconductor-complexheatmap</requirement>
-        <requirement type="package" version="0.4.3">r-circlize</requirement>
-        <requirement type="package" version="2.18.0">r-gdata</requirement>
-        <requirement type="package" version="3.98_1.6">r-xml</requirement>
-        <requirement type="package" version="1.1_2">r-rcolorbrewer</requirement>
+        <requirement type="package" version="1.20.2">r-getopt</requirement>
         <requirement type="package" version="4.0.0">r-writexls</requirement>
     </requirements>
     <version_command><![CDATA[
-echo $(R --version | grep version | grep -v GNU)", nanostringnorm version" $(R --vanilla --slave -e "library(nanostringnorm); cat(sessionInfo()\$otherPkgs\$nanostringnorm\$Version)" 2> /dev/null | grep -v -i "WARNING: "), getopt version" $(R --vanilla --slave -e "library(getopt); cat(sessionInfo()\$otherPkgs\$getopt\$Version)" 2> /dev/null | grep -v -i "WARNING: "), psych version" $(R --vanilla --slave -e "library(psych); cat(sessionInfo()\$otherPkgs\$psych\$Version)" 2> /dev/null | grep -v -i "WARNING: "), complexheatmap version" $(R --vanilla --slave -e "library(complexheatmap); cat(sessionInfo()\$otherPkgs\$complexheatmap\$Version)" 2> /dev/null | grep -v -i "WARNING: "), circlize version" $(R --vanilla --slave -e "library(circlize); cat(sessionInfo()\$otherPkgs\$circlize\$Version)" 2> /dev/null | grep -v -i "WARNING: "), gdata version" $(R --vanilla --slave -e "library(gdata); cat(sessionInfo()\$otherPkgs\$gdata\$Version)" 2> /dev/null | grep -v -i "WARNING: "), xml version" $(R --vanilla --slave -e "library(xml); cat(sessionInfo()\$otherPkgs\$xml\$Version)" 2> /dev/null | grep -v -i "WARNING: "), rcolorbrewer version" $(R --vanilla --slave -e "library(rcolorbrewer); cat(sessionInfo()\$otherPkgs\$rcolorbrewer\$Version)" 2> /dev/null | grep -v -i "WARNING: "), writexls version" $(R --vanilla --slave -e "library(writexls); cat(sessionInfo()\$otherPkgs\$writexls\$Version)" 2> /dev/null | grep -v -i "WARNING: ")
+echo $(R --version | grep version | grep -v GNU)", nanostringnorm version" $(R --vanilla --slave -e "library(nanostringnorm); cat(sessionInfo()\$otherPkgs\$nanostringnorm\$Version)" 2> /dev/null | grep -v -i "WARNING: ")", getopt version" $(R --vanilla --slave -e "library(getopt); cat(sessionInfo()\$otherPkgs\$getopt\$Version)" 2> /dev/null | grep -v -i "WARNING: ")", writexls version" $(R --vanilla --slave -e "library(writexls); cat(sessionInfo()\$otherPkgs\$writexls\$Version)" 2> /dev/null | grep -v -i "WARNING: ")
     ]]></version_command>
     <command detect_errors="exit_code"><![CDATA[
-Rscript --default-packages=methods,utils ${__tool_directory__}/nanonorm.R --rccfile "$i_rccfile" --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait $i_trait --statistic $o_statistic]]>
+Rscript ${__tool_directory__}/nanonorm.R --rccfile '$i_rccfile' --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait '$i_trait' --statistic $o_statistic]]>
     </command>
     <inputs>
         <param name="i_rccfile" type="data" format="xlsx" label="XLSX table of RCC files" />
@@ -58,8 +51,9 @@ Rscript --default-packages=methods,utils ${__tool_directory__}/nanonorm.R --rccf
     </outputs>
     <tests>
         <test>
-            <param name="i_rccfile" value="${__tool_directory__}/test-data/S01_teste.RCC"/>
-            <output name="o_output" file="${__tool_directory__}/test-data/Probability_plot_sf2.pdf"/>
+            <param name="i_rccfile" value="test_data.xlsx"/>
+            <param name="i_trait" value="test_trait.xlsx"/>
+            <output name="o_output" ftype="xlsx" value="output.xlsx"/>
         </test>
     </tests>
     <help><![CDATA[
