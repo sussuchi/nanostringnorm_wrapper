@@ -9,7 +9,20 @@
 echo $(R --version | grep version | grep -v GNU)", nanostringnorm version" $(R --vanilla --slave -e "library(nanostringnorm); cat(sessionInfo()\$otherPkgs\$nanostringnorm\$Version)" 2> /dev/null | grep -v -i "WARNING: ")", getopt version" $(R --vanilla --slave -e "library(getopt); cat(sessionInfo()\$otherPkgs\$getopt\$Version)" 2> /dev/null | grep -v -i "WARNING: ")", writexls version" $(R --vanilla --slave -e "library(writexls); cat(sessionInfo()\$otherPkgs\$writexls\$Version)" 2> /dev/null | grep -v -i "WARNING: ")
     ]]></version_command>
     <command detect_errors="exit_code"><![CDATA[
-Rscript ${__tool_directory__}/nanonorm.R --rccfile '$i_rccfile' --output $o_output --outpdf $o_outpdf --codecount $codecount --background $background --samplecont $samplecont --othernorm $othernorm --boxplot $o_boxplot --controls $o_controls --househk $o_househk --trait '$i_trait' --statistic $o_statistic]]>
+Rscript '${__tool_directory__}/nanonorm.R'
+--rccfile '$i_rccfile'
+--output '$o_output'
+--outpdf '$o_outpdf'
+--codecount '$codecount'
+--background $background
+--samplecont $samplecont
+--othernorm $othernorm
+--boxplot '$o_boxplot'
+--controls '$o_controls'
+--househk '$o_househk'
+--trait '$i_trait'
+--statistic $o_statistic
+]]>
     </command>
     <inputs>
         <param name="i_rccfile" type="data" format="xlsx" label="XLSX table of RCC files" />
@@ -60,19 +73,6 @@ Rscript ${__tool_directory__}/nanonorm.R --rccfile '$i_rccfile' --output $o_outp
         Escolha as tabelas xlsx com os dados de NanoString e parâmetros para análise diferencial. Selecione as opções de normalização e clique em executar. Será fornecido a tabela com dados normalizados, a tabela com valores de p e fold change, um pdf com os todos os gráficos possíveis do NanoStringNorm e, adicionalmente, o plot dos controles (positivo e negativo por "Code Class") e boxplots dos housekeepings e endogenos (antes e depois da normalização).
     ]]></help>
     <citations>
-        <citation type="bibtex">
-        @article{doi:10.1093/bioinformatics/bts188,
-        author = {Waggott, Daryl and Chu, Kenneth and Yin, Shaoming and Wouters, Bradly G. and Liu, Fei-Fei and Boutros, Paul C.},
-        title = {NanoStringNorm: an extensible R package for the pre-processing of NanoString mRNA and miRNA data},
-        journal = {Bioinformatics},
-        volume = {28},
-        number = {11},
-        pages = {1546-1548},
-        year = {2012},
-        doi = {10.1093/bioinformatics/bts188},
-        URL = {http://dx.doi.org/10.1093/bioinformatics/bts188},
-        eprint = {/oup/backfile/content_public/journal/bioinformatics/28/11/10.1093_bioinformatics_bts188/2/bts188.pdf}
-        }
-        </citation>
+        <citation type="doi">10.1093/bioinformatics/bts188</citation>
     </citations>
 </tool>
