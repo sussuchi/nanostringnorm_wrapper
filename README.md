@@ -1,1 +1,1 @@
-# nanostringnorm
+#Galaxy wrapper for NanoStringNorm
